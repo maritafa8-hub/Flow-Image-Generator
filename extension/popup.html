@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flow Prompt Automator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="title">FLOW PROMPT AUTOMATOR</h1>
+      <div id="connectionBadge" class="connection-badge status-offline" title="Checking Flow tab...">
+        <span class="badge-dot"></span>
+        <span id="connectionText">Checking...</span>
+      </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <!-- TXT File Upload -->
+    <section class="section upload-section">
+      <input type="file" id="fileInput" accept=".txt" class="file-input-hidden">
+      <button type="button" id="uploadBtn" class="btn btn-secondary btn-full">
+        <svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+        </svg>
+        Choose TXT File
+      </button>
+
+      <div class="file-info-box">
+        <div id="fileNameDisplay" class="file-name">No file selected</div>
+        <div id="promptCountDisplay" class="prompt-count">0 prompts</div>
+      </div>
+    </section>
+
+    <!-- Interval Setting -->
+    <section class="section">
+      <label class="label" for="intervalValue">Interval</label>
+      <div class="interval-row">
+        <input type="number" id="intervalValue" min="1" max="3600" value="30" class="input-number">
+        <select id="intervalUnit" class="select-unit">
+          <option value="seconds" selected>Seconds</option>
+          <option value="minutes">Minutes</option>
+        </select>
+      </div>
+      <div class="helper-text">Time to wait between submissions</div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Progress -->
+    <section class="section progress-section">
+      <div class="progress-header">
+        <span class="label">Progress</span>
+        <span id="progressRatio" class="progress-ratio">0 / 0</span>
+      </div>
+
+      <div class="progress-bar-bg">
+        <div id="progressBarFill" class="progress-bar-fill"></div>
+      </div>
+
+      <div class="countdown-row">
+        <span class="countdown-label">Next prompt in</span>
+        <span id="countdownDisplay" class="countdown-value">--:--</span>
+      </div>
+    </section>
+
+    <!-- Action Controls -->
+    <section class="section actions-section">
+      <div class="btn-group-primary">
+        <button type="button" id="startBtn" class="btn btn-primary btn-full">START</button>
+      </div>
+
+      <div class="btn-group-secondary">
+        <button type="button" id="pauseBtn" class="btn btn-secondary">PAUSE</button>
+        <button type="button" id="stopBtn" class="btn btn-danger">STOP</button>
+      </div>
+
+      <div class="reset-wrapper">
+        <button type="button" id="clearListBtn" class="btn-text btn-danger-text" title="Clear entire prompt queue">Clear List</button>
+        <span class="text-separator">•</span>
+        <button type="button" id="clearPromptBtn" class="btn-text btn-clear-prompt" title="Clear current prompt in Google Flow">Clear Flow Box</button>
+        <span class="text-separator">•</span>
+        <button type="button" id="resetBtn" class="btn-text" title="Reset progress back to prompt 1">Reset Progress</button>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Prompt List Section (View & Manage Prompts) -->
+    <section class="section prompt-list-section">
+      <div class="prompt-list-header">
+        <div class="prompt-list-title-wrap">
+          <span class="label">Prompt List</span>
+          <span id="promptListBadge" class="badge-count">0 prompts</span>
+        </div>
+        <div class="prompt-list-actions">
+          <button type="button" id="togglePromptListBtn" class="btn-text btn-xs" title="Show or hide prompt list">
+            <span id="togglePromptListText">Hide List</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="promptListContainer" class="prompt-list-container">
+        <!-- Rendered dynamically via popup.js -->
+        <div class="prompt-list-empty">No prompts in queue. Upload a TXT file above.</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Status Area -->
+    <footer class="footer">
+      <div class="status-label">Status</div>
+      <div id="statusMessage" class="status-message">Ready</div>
+      <div id="errorBanner" class="error-banner hidden" style="cursor: pointer;" title="Click to dismiss"></div>
+      <button type="button" id="refreshTabBtn" class="btn btn-secondary btn-full hidden" style="margin-top: 8px; font-size: 11px; padding: 6px 10px; cursor: pointer;">
+        🔄 Refresh Flow Page
+      </button>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

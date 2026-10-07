@@ -1,0 +1,6 @@
+{
+  "name": "Flow Prompt Automator - Chrome Extension Hub",
+  "description": "Production-grade Chrome Extension (MV3) for automating sequential prompt submissions on Google Flow with background scheduling, reliable DOM detection, and state persistence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
